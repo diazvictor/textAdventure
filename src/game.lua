@@ -156,7 +156,13 @@ function game.actions.goto_syn(param)
 end
 
 function game.actions.look_syn(param)
-	excuses:look_excuses()
+	local item = game.getobj(param)
+
+	if item then
+		text.parser(item.description or item)
+	else
+		excuses:look_excuses()
+	end
 end
 
 function game.actions.take_syn(param)
