@@ -129,7 +129,30 @@ function game.actions.help_syn()
 end
 
 function game.actions.goto_syn(param)
-	excuses:goto_excuses()
+	local newroomdir = room.current.exits[param]
+	if not newroomdir then
+		for _,v in pairs(room.current.exits) do
+			if v == param or v.target then
+				newroomdir = v
+				break
+			end
+		end
+	end
+	if newroomdir then
+		local newroom = room.all[newroomdir] or room.all[newroomdir.target]
+		if newroomdir.locked then
+			if newroomdir.excuse then
+				text.parser(newroomdir.excuse)
+			else
+				print("No puedes ir por ahí.")
+			end
+			return
+		end
+		room.current = newroom
+		room.info()
+	else
+		excuses:goto_excuses()
+	end
 end
 
 function game.actions.look_syn(param)
