@@ -166,7 +166,21 @@ function game.actions.look_syn(param)
 end
 
 function game.actions.take_syn(param)
-	excuses:take_excuses()
+	local item = game.getobj(param)
+	if item then
+		if item.pickup and item.pickup() then --veto if pickup() returns true
+			return
+		end
+		if item.name and item.description then
+			player.addItem(item)
+			room.current.objects[param] = nil
+			text.parser('Has cogido ' .. (item.description:lower() or param))
+		else
+			excuses:take_excuses()
+		end
+	else
+		excuses:take_excuses()
+	end
 end
 
 function game.actions.drop_syn(param)
