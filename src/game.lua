@@ -13,30 +13,63 @@ game.state = "intro"
 game.actions = {}
 game.verbs = {
 	drop_syn = {
-		'drop (.+)'
+		'soltar (.+)'
 	},
 	goto_syn = {
-		"go (.+)"
+		"ir (.+)"
 	},
 	help_syn = {
-		'help'
+		'ayuda'
 	},
 	look_syn = {
-		'look (.+)'
+		'mirar (.+)'
 	},
 	take_syn = {
-		'take (.+)'
+		'tomar (.+)'
 	},
 	inventory_syn = {
-		'inventory'
+		'inventario'
 	},
-	exit_syn = {
-		'exit'
+	quit_syn = {
+		'salir'
 	},
 	exits_syn = {
-		'exits'
+		'salidas'
 	}
 }
+
+function game.actions.help_syn(param)
+	print('Simplemente, escribe lo que quieras hacer')
+end
+
+function game.actions.goto_syn(param)
+	excuses:goto_excuses()
+end
+
+function game.actions.look_syn(param)
+	excuses:look_excuses()
+end
+
+function game.actions.take_syn(param)
+	excuses:take_excuses()
+end
+
+function game.actions.drop_syn(param)
+	print('No puedo dejar algo que no tengo')
+end
+
+function game.actions.inventory_syn()
+	print('No llevo nada encima.')
+end
+
+function game.actions.quit_syn()
+	print('Gracias por jugar!')
+	game.running = false
+end
+
+function game.actions.exits_syn()
+	print('No hay ninguna salida disponible en este momento.')
+end
 
 function game.doaction(action, param)
 	game.actions[action](param)
