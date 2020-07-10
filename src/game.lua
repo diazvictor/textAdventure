@@ -86,6 +86,16 @@ function game.getinvobj(param)
 	end
 end
 
+--- retorna el ultimo valor de una tabla
+local function getendvalue(t)
+    t = t or {}
+    for k,v in pairs(t) do
+        endk = k
+        endv = v
+    end
+    return endk, endv
+end
+
 game.actions = {}
 game.verbs = {
 	drop_syn = {
