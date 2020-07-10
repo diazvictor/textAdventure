@@ -1,6 +1,6 @@
 --[[--
  @package   textAdventure
- @filename  game.lua
+ @module	game.lua
  @version   1.6
  @autor     Díaz Urbaneja Víctor Eduardo Diex
  @date      23.06.2020 15:20:00 -04
@@ -88,7 +88,7 @@ function parse(text)
 	end
 end
 
-function game:run()
+function game.run()
 	while (game.running == true) do
 		if not room.current then room.current = select(2, next(room.all)) end
 		if not room.current then print("No se han cargado localidades/habitaciones. Saliendo...") return end
