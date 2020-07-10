@@ -38,7 +38,7 @@ function game.confirm(title, question)
 	end
 end
 
---- verifico si un item existe en la habitación
+--- verifico si un item existe en la habitación actual
 -- @tparam string param nombre del item a verificar
 -- @treturn table item existente en la habitación
 -- @usage local item = game.getobj(param)
@@ -60,6 +60,29 @@ function game.getobj(param)
 	local item = (room.current.objects[param] or room.current.look_in[param])
 	if item then
 		return item
+	end
+end
+
+--- verifico si un item existe en el inventario
+-- @tparam string param nombre del item a verificar
+-- @treturn table item existente en el inventario
+-- @treturn number indíce del item
+-- @usage local item = game.getinvobj(param)
+-- if item then
+--     if item.putdown and item.putdown() then
+--         return
+--     end
+--     player.removeItem(item.name)
+--     room.current.objects[param] = item
+--     print('He dejado ese objeto aquí.')
+-- else
+--     print('No puedo soltar algo que no tengo.')
+-- end
+function game.getinvobj(param)
+	for i, item in pairs(player.inventory) do
+		if item.name == param then
+			return item, i
+		end
 	end
 end
 
