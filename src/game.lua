@@ -88,11 +88,24 @@ function parse(text)
 	end
 end
 
-print('Text Adventure Demo!')
-print('====================')
-while game.running do
-	print('> ')
-	input = io.read()
-	parse(input)
+function game:run()
+	while (game.running == true) do
+		if not room.current then room.current = select(2, next(room.all)) end
+		if not room.current then print("No se han cargado localidades/habitaciones. Saliendo...") return end
+		if game.state == 'intro' then
+			if game.name then text.parser(game.name) end
+			if game.description then text.parser(game.description) end
+			text.parser('Presione la tecla [ENTER] para continuar.')
+			io.read()
+			room.info()
+			game.state = 'play'
+		elseif game.state == 'play' then
+			print()
+			input = io.read()
+			print()
+			res = parse(input)
+		end
+	end
 end
+
 return game
