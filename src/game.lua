@@ -202,8 +202,16 @@ function game.actions.inventory_syn()
 end
 
 function game.actions.quit_syn()
-	print('Gracias por jugar!')
-	game.running = false
+	ok = game.confirm(
+		'Seguro que deseas salir ? [si/no]',
+		{'si','no'}
+	)
+	if ok == true then
+		game.running = false
+		print('Goodbye!')
+	else
+		print('Entiendo.')
+	end
 end
 
 function game.actions.exits_syn()
