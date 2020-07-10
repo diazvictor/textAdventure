@@ -10,6 +10,34 @@ game = {}
 game.running = true
 game.state = "intro"
 
+--- dialogo de confirmación
+-- @tparam string title titulo del dialogo
+-- @tparam table question tabla con las respuestas esperadas
+-- @treturn boolean true si la primera respuesta es confirmada
+-- @treturn[1] boolean false si la segunda respuesta es confirmada
+-- @usage ok = game.confirm(
+--     'Seguro que deseas salir ? [si/no]',
+--     {'si','no'}
+-- )
+-- if ok == true then
+--     game.running = false
+--     print('Gracias por jugar!')
+-- else
+--     print('Entiendo. Sal del juego solo cuando estes seguro, no me hagas perder el tiempo!')
+-- end
+function game.confirm(title, question)
+	text.parser(title)
+	question = question or {}
+	while true do
+		input = io.read()
+		if input == question[1] then
+			return true
+		elseif input == question[2] then
+			return false
+		end
+	end
+end
+
 game.actions = {}
 game.verbs = {
 	drop_syn = {
