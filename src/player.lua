@@ -19,9 +19,9 @@ player.inventory = {}
 -- @treturn[1] string imprime en pantalla un mensaje sin los items
 function player.getItems()
 	if #player.inventory ~= 0 then
-		print('Tengo los siguientes objetos en mi inventario:')
+		text.parser('Tengo los siguientes objetos en mi inventario:')
 		for _, item in pairs(player.inventory) do
-			print('* ' .. item.description)
+			text.parser('* ' .. item.description)
 		end
 	else
 		print('No llevo nada encima.')
