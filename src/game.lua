@@ -1,6 +1,6 @@
 --[[--
  @package   textAdventure
- @module	game.lua
+ @module    game.lua
  @version   1.6
  @autor     Díaz Urbaneja Víctor Eduardo Diex
  @date      23.06.2020 15:20:00 -04
@@ -88,12 +88,12 @@ end
 
 --- retorna el ultimo valor de una tabla
 local function getendvalue(t)
-    t = t or {}
-    for k,v in pairs(t) do
-        endk = k
-        endv = v
-    end
-    return endk, endv
+	t = t or {}
+	for k,v in pairs(t) do
+		endk = k
+		endv = v
+	end
+	return endk, endv
 end
 
 game.actions = {}
@@ -124,7 +124,7 @@ game.verbs = {
 	}
 }
 
-function game.actions.help_syn(param)
+function game.actions.help_syn()
 	print('Simplemente, escribe lo que quieras hacer')
 end
 
