@@ -88,4 +88,11 @@ function parse(text)
 	end
 end
 
+print('Text Adventure Demo!')
+print('====================')
+while game.running do
+	print('> ')
+	input = io.read()
+	parse(input)
+end
 return game
