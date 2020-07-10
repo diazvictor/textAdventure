@@ -184,7 +184,17 @@ function game.actions.take_syn(param)
 end
 
 function game.actions.drop_syn(param)
-	print('No puedo dejar algo que no tengo')
+	local item = game.getinvobj(param)
+	if item then
+		if item.putdown and item.putdown() then --veto if pickup() returns true
+			return
+		end
+		player.removeItem(item.name)
+		room.current.objects[param] = item
+		print('He dejado ese objeto aquí.')
+	else
+		print('No puedo soltar algo que no tengo.')
+	end
 end
 
 function game.actions.inventory_syn()
