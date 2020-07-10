@@ -38,6 +38,31 @@ function game.confirm(title, question)
 	end
 end
 
+--- verifico si un item existe en la habitación
+-- @tparam string param nombre del item a verificar
+-- @treturn table item existente en la habitación
+-- @usage local item = game.getobj(param)
+-- if item then
+--     if item.pickup and item.pickup() then
+--         return
+--     end
+--     if item.name and item.description then
+--         player.addItem(item)
+--         room.current.objects[param] = nil
+--         text.parser('Has cogido ' .. (item.description:lower() or param))
+--     else
+--         excuses:take_excuses()
+--     end
+-- else
+--     excuses:take_excuses()
+-- end
+function game.getobj(param)
+	local item = (room.current.objects[param] or room.current.look_in[param])
+	if item then
+		return item
+	end
+end
+
 game.actions = {}
 game.verbs = {
 	drop_syn = {
