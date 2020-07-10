@@ -215,7 +215,18 @@ function game.actions.quit_syn()
 end
 
 function game.actions.exits_syn()
-	print('No hay ninguna salida disponible en este momento.')
+	local t = {}
+    for k,_ in pairs(room.current.exits) do
+        table.insert(t, k) -- inserto los valores de la tabla "room.current.exits" en la tabla "t"
+    end
+    local endKey,endValue = getendvalue(t) -- recojo el ultimo valor de la tabla "t"
+    local msg
+    if #t > 1 then
+        msg = 'Las salidas posibles son '
+    else
+        msg = 'Sólo hay una salida posible: '
+    end
+    print(msg .. table.concat(t,', '):gsub(', %w+$',' y ' .. endValue))
 end
 
 function game.doaction(action, param)
