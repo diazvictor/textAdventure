@@ -198,7 +198,7 @@ function game.actions.drop_syn(param)
 end
 
 function game.actions.inventory_syn()
-	print('No llevo nada encima.')
+	player.getItems()
 end
 
 function game.actions.quit_syn()
