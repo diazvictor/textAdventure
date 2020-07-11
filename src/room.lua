@@ -15,7 +15,7 @@ local function newobject(class, name, table)
 	return t
 end
 
-room = {all = {}, description = '', current = nil}
+room = {all = {}, enter = function () end , description = '', current = nil}
 
 --- Crea una localicación/habitación
 -- @tparam string name nombre de la localicación

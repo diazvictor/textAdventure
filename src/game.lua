@@ -147,6 +147,8 @@ function game.actions.goto_syn(param)
 				print("No puedes ir por ahí.")
 			end
 			return
+		elseif newroom:enter() then
+			return
 		end
 		room.current = newroom
 		room.info()
