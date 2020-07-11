@@ -161,6 +161,9 @@ function game.actions.look_syn(param)
 	local item = game.getobj(param)
 
 	if item then
+		if item.look and item.look() then --veto if pickup() returns true
+			return
+		end
 		text.parser(item.description or item)
 	else
 		excuses:look_excuses()
