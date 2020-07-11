@@ -57,7 +57,7 @@ end
 --     excuses:take_excuses()
 -- end
 function game.getobj(param)
-	local item = (room.current.objects[param] or room.current.look_in[param])
+	local item = (room.current.objects[param] or room.current.look[param])
 	if item then
 		return item
 	end
@@ -147,7 +147,7 @@ function game.actions.goto_syn(param)
 				print("No puedes ir por ahí.")
 			end
 			return
-		elseif newroom:enter() then
+		elseif newroom.on_enter() then
 			return
 		end
 		room.current = newroom
@@ -162,7 +162,7 @@ function game.actions.look_syn(param)
 	local invitem = game.getinvobj(param)
 
 	if item then
-		if item.look and item.look() then --veto if pickup() returns true
+		if item.on_look and item.on_look() then --veto if pickup() returns true
 			return
 		end
 		if item.object then
@@ -181,7 +181,7 @@ end
 function game.actions.take_syn(param)
 	local item = game.getobj(param)
 	if item then
-		if item.pickup and item.pickup() then --veto if pickup() returns true
+		if item.on_pickup and item.on_pickup() then
 			return
 		end
 		if item.take_again then
@@ -193,7 +193,7 @@ function game.actions.take_syn(param)
 		if item.name and item.description then
 			player.addItem(item)
 			room.current.objects[param] = nil
-			for k,v in pairs(room.current.look_in) do
+			for k,v in pairs(room.current.look) do
 				if type(v) == 'table' then
 					v.object = nil
 				end
@@ -210,7 +210,7 @@ end
 function game.actions.drop_syn(param)
 	local item = game.getinvobj(param)
 	if item then
-		if item.putdown and item.putdown() then --veto if pickup() returns true
+		if item.on_putdown and item.on_putdown() then
 			return
 		end
 		player.removeItem(item.name)
