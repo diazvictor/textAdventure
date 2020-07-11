@@ -284,7 +284,7 @@ function game.run()
 			game.state = 'play'
 		elseif game.state == 'play' then
 			print()
-			input = io.read()
+			input = io.read():gsub("%s+$", ""):gsub("^%s+", "")
 			print()
 			res = parse(input)
 		end
