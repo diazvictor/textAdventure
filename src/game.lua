@@ -171,6 +171,8 @@ function game.actions.look_syn(param)
 		else
 			text.parser(item.message or item.description or item)
 		end
+	elseif invitem then
+		text.parser(invitem.description or invitem)
 	else
 		excuses:look_excuses()
 	end
