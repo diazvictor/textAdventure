@@ -159,12 +159,18 @@ end
 
 function game.actions.look_syn(param)
 	local item = game.getobj(param)
+	local invitem = game.getinvobj(param)
 
 	if item then
 		if item.look and item.look() then --veto if pickup() returns true
 			return
 		end
-		text.parser(item.description or item)
+		if item.object then
+			text.parser(item.excuse)
+			return
+		else
+			text.parser(item.message or item.description or item)
+		end
 	else
 		excuses:look_excuses()
 	end
