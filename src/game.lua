@@ -171,6 +171,12 @@ function game.actions.take_syn(param)
 		if item.pickup and item.pickup() then --veto if pickup() returns true
 			return
 		end
+		if item.take_again then
+			player.addItem(item)
+			room.current.objects[param] = nil
+			print('Listo. Ya lo tengo de nuevo en mi poder.')
+			return
+		end
 		if item.name and item.description then
 			player.addItem(item)
 			room.current.objects[param] = nil
@@ -191,6 +197,7 @@ function game.actions.drop_syn(param)
 		end
 		player.removeItem(item.name)
 		room.current.objects[param] = item
+		room.current.objects[param]['take_again'] = true
 		print('He dejado ese objeto aquí.')
 	else
 		print('No puedo soltar algo que no tengo.')
