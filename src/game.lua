@@ -193,6 +193,11 @@ function game.actions.take_syn(param)
 		if item.name and item.description then
 			player.addItem(item)
 			room.current.objects[param] = nil
+			for k,v in pairs(room.current.look_in) do
+				if type(v) == 'table' then
+					v.object = nil
+				end
+			end
 			text.parser('Has cogido ' .. (item.description:lower() or param))
 		else
 			excuses:take_excuses()
