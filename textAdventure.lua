@@ -6,8 +6,8 @@
  @date      07.07.2020 12:15:15 -04
 ]]--
 
-require 'excuses'
-require 'player'
-require 'text'
-require 'room'
-require 'game'
+require 'src.excuses'
+require 'src.player'
+require 'src.text'
+require 'src.room'
+require 'src.game'
