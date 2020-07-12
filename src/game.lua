@@ -87,7 +87,7 @@ function game.getinvobj(param)
 end
 
 --- retorna el ultimo valor de una tabla
-local function getendvalue(t)
+function game.getendvalue(t)
 	t = t or {}
 	for k,v in pairs(t) do
 		endk = k
@@ -153,7 +153,7 @@ function game.actions.goto_syn(param)
 		room.current = newroom
 		room.info()
 	else
-		excuses:goto_excuses()
+		excuses.goto_excuses()
 	end
 end
 
@@ -174,7 +174,7 @@ function game.actions.look_syn(param)
 	elseif invitem then
 		text.parser(invitem.description or invitem)
 	else
-		excuses:look_excuses()
+		excuses.look_excuses()
 	end
 end
 
@@ -200,10 +200,10 @@ function game.actions.take_syn(param)
 			end
 			text.parser('Has cogido ' .. (item.description:lower() or param))
 		else
-			excuses:take_excuses()
+			excuses.take_excuses()
 		end
 	else
-		excuses:take_excuses()
+		excuses.take_excuses()
 	end
 end
 
@@ -233,7 +233,7 @@ function game.actions.quit_syn()
 	)
 	if ok == true then
 		game.running = false
-		print('Goodbye!')
+		print('Gracias por jugar!')
 	else
 		print('Entiendo.')
 	end
@@ -244,7 +244,7 @@ function game.actions.exits_syn()
     for k,_ in pairs(room.current.exits) do
         table.insert(t, k) -- inserto los valores de la tabla "room.current.exits" en la tabla "t"
     end
-    local endKey,endValue = getendvalue(t) -- recojo el ultimo valor de la tabla "t"
+    local endKey,endValue = game.getendvalue(t) -- recojo el ultimo valor de la tabla "t"
     local msg
     if #t > 1 then
         msg = 'Las salidas posibles son '
