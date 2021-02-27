@@ -1,8 +1,8 @@
 ## textAdventure
 
-a text adventure library for Lua
+an engine to build your conversational adventures
 
-**NOTE**: *This software is on stage development.*
+> **NOTE**: This software is on stage development.
 
 To run this example:
 
