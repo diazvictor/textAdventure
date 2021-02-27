@@ -14,7 +14,6 @@ game.state = "intro"
 -- @tparam string title titulo del dialogo
 -- @tparam table question tabla con las respuestas esperadas
 -- @treturn boolean true si la primera respuesta es confirmada
--- @treturn[1] boolean false si la segunda respuesta es confirmada
 -- @usage ok = game.confirm(
 --     'Seguro que deseas salir ? [si/no]',
 --     {'si','no'}
@@ -39,7 +38,7 @@ function game.confirm(title, question)
 end
 
 --- verifico si un item existe en la habitación actual
--- @tparam string param nombre del item a verificar
+-- @tparam string param nombre del item
 -- @treturn table item existente en la habitación
 -- @usage local item = game.getobj(param)
 -- if item then
@@ -64,7 +63,7 @@ function game.getobj(param)
 end
 
 --- verifico si un item existe en el inventario
--- @tparam string param nombre del item a verificar
+-- @tparam string param nombre del item
 -- @treturn table item existente en el inventario
 -- @treturn number indíce del item
 -- @usage local item = game.getinvobj(param)
