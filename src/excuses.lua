@@ -9,70 +9,66 @@
 math.randomseed(os.time())
 excuses = {}
 
-function excuses:take_excuses()
-	local random = math.random(1,6)
-	if random == 1 then
-		print('¿Que coja el qué? No veo como me podría ayudar eso.')
-	elseif random == 2 then
-		print('Mejor no.')
-	elseif random == 3 then
-		print('Olvídalo.')
-	elseif random == 4 then
-		print('No sé a qué cosa te refieres...')
-	elseif random == 5 then
-		print('No veo eso que dices.')
-	elseif random == 6 then
-		print('¿Qué? No me llevaré eso a ninguna parte.')
+excuses.LOOK_EXCUSES = {
+	"¿Qué mire el qué?",
+	"No veo nada aquí, ni en mi inventario, parecido a eso.",
+	"No sé a qué te refieres exactamente...",
+	"¿Qué mire QUÉ?",
+	"Erhm... ¿Qué dices que quieres que mire?",
+	"No se exactamente a que te refieres..."
+}
+
+excuses.TAKE_EXCUSES = {
+	"¿Que coja el qué? No veo como me podría ayudar eso.",
+	"Mejor no.",
+	"Olvídalo.",
+	"No sé a qué cosa te refieres...",
+	"No veo eso que dices.",
+	"¿Qué? No me llevaré eso a ninguna parte."
+}
+
+excuses.GOTO_EXCUSES = {
+	"No puedo ir en esa dirección.",
+	"No hay ninguna salida hacia allá.",
+	"No hay salida en esa dirección.",
+	"Por ahí no hay salida.",
+	"No hay salida hacia allá.",
+	"No puedo. Para ver las direcciones posibles, escribe: salidas."
+}
+
+excuses.NONICK_EXCUSES = {
+	"Siento como si no fuera nadie...",
+	"Algo me impide hablar.",
+	"Creo que primero debería averiguar quien soy...",
+	"Escribe: nickname [nombre] para comenzar a jugar",
+	"¿Y si elijo un nombre para representarme?"
+}
+
+local function construct(t)
+    endv = game.getendvalue(t)
+	if not endv then return end
+	local random = math.random(1, endv)
+	for i,v in pairs(t) do
+		if random == i then
+			print(v)
+		end
 	end
 end
 
-function excuses:look_excuses()
-	local random = math.random(1,6)
-	if random == 1 then
-		print('Qué mire el qué?')
-	elseif random == 2 then
-		print('No veo nada aquí, ni en mi inventario, parecido a eso.')
-	elseif random == 3 then
-		print('No sé a qué te refieres exactamente...')
-	elseif random == 4 then
-		print('Qué mire QUÉ?')
-	elseif random == 5 then
-		print('Erhm... ¿Qué dices que quieres que mire?')
-	elseif random == 6 then
-		print('No se exactamente a que te refieres...')
-	end
+function excuses.take_excuses()
+	construct(excuses.TAKE_EXCUSES)
 end
 
-function excuses:goto_excuses()
-	local random = math.random(1,6)
-	if random == 1 then
-		print('No puedo ir en esa dirección.')
-	elseif random == 2 then
-		print('No hay ninguna salida hacia allá.')
-	elseif random == 3 then
-		print('No hay salida en esa dirección.')
-	elseif random == 4 then
-		print('Por ahí no hay salida.')
-	elseif random == 5 then
-		print('No hay salida hacia allá.')
-	elseif random == 6 then
-		print('No puedo. Para ver las direcciones posibles, escribe: salidas.')
-	end
+function excuses.look_excuses()
+	construct(excuses.LOOK_EXCUSES)
 end
 
-function excuses:nonick_excuses()
-	local random = math.random(1,5)
-	if random == 1 then
-		print('Siento como si no fuera nadie...')
-	elseif random == 2 then
-		print('Algo me impide hablar.')
-	elseif random == 3 then
-		print('Creo que primero debería averiguar quien soy...')
-	elseif random == 4 then
-		print('Escribe: nickname [nombre] para comenzar a jugar')
-	elseif random == 5 then
-		print('¿Y si elijo un nombre para representarme?')
-	end
+function excuses.goto_excuses()
+	construct(excuses.GOTO_EXCUSES)
+end
+
+function excuses.nonick_excuses()
+	construct(excuses.NONICK_EXCUSES)
 end
 
 return excuses
