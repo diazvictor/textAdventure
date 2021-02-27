@@ -15,8 +15,6 @@ player.dead = false
 player.inventory = {}
 
 --- Imprime en pantalla los items del inventario
--- @treturn string imprime en pantalla un mensaje con los items del inventario
--- @treturn[1] string imprime en pantalla un mensaje sin los items
 function player.getItems()
 	if #player.inventory ~= 0 then
 		text.parser('Tengo los siguientes objetos en mi inventario:')
@@ -48,9 +46,8 @@ function player.addItem(item)
 end
 
 --- Verifica si un item existe en el inventario
--- @tparam string name nombre del item a verificar
+-- @tparam string name nombre del item
 -- @treturn bool true si el item existe
--- @treturn[1] bool false si el item no existe
 -- @usage local ok = player.hasItem('llave')
 -- if ok then
 --     print('Tienes la llave en tu inventario')
@@ -67,7 +64,7 @@ function player.hasItem(name)
 end
 
 --- Remueve un item del inventario
--- @tparam string name nombre del item a remover
+-- @tparam string name nombre del item
 -- @treturn string si el item fue removido
 -- @usage player.removeItem('llave')
 function player.removeItem(name)
